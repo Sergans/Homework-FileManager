@@ -38,15 +38,16 @@ namespace Homework_FileManager
             string[] b = com.Split('/');
             for (int i = 0; i < this.com.Length; i++)
             {
-                if (b[0] == this.com[i])
+                if (b[0].Trim() == this.com[i])
                 {
-                    nextdir = b[1];
-                    return b[0];
+                    
+                    nextdir = b[1].Trim();
+                    return b[0].Trim();
 
                 }
             }
             
-            return b[0];
+            return b[0].Trim();
 
         }
 
