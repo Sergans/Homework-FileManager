@@ -157,7 +157,8 @@ namespace Homework_FileManager
 
             for (int i = 0; i < sp.Length; i++)
             {
-                Console.WriteLine($"{i}: {Path.GetFileName(sp[i])}");
+                Console.WriteLine(Path.GetFileName(sp[i]));
+                //Console.WriteLine($"{i}: {Path.GetFileName(sp[i])}");
             }
 
         }
