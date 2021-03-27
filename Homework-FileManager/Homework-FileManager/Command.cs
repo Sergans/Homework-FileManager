@@ -36,45 +36,20 @@ namespace Homework_FileManager
         {
 
             string[] b = com.Split('/');
-            //for (int i = 0; i < this.com.Length; i++)
-            //{
-            //    if (b[0] == this.com[i])
-            //    {
-            //        nextdir = b[1];
-            //        return b[0];
-
-            //    }
-            //}
-            if (b[0] == cd)
+            for (int i = 0; i < this.com.Length; i++)
             {
+                if (b[0] == this.com[i])
+                {
+                    nextdir = b[1];
+                    return b[0];
 
-                nextdir = b[1];
-                return b[0];
+                }
             }
-            else if (b[0] == atr)
-            {
-
-                nextdir = b[1];
-                return b[0];
-            }
-            else if (b[0] == del)
-            {
-
-                nextdir = b[1];
-                return b[0];
-            }
-            else if (b[0] == copy)
-            {
-
-                nextdir = b[1];
-                return b[0];
-            }
+            
 
             return b[0];
 
         }
-
-
 
         public string Comand(string com)
         {

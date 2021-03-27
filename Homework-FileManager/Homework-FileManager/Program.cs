@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace Homework_FileManager
 {
@@ -7,7 +8,9 @@ namespace Homework_FileManager
         static void Main(string[] args)
         {
             string com;
-            Command command = new Command(@"C:\Users\GANS\Desktop\Catalog");
+
+            Command command = new Command(Directory.GetCurrentDirectory());//Каталог по умолчанию
+            //Command command = new Command(@"C:\Users\GANS\Desktop\Catalog");//Пробный каталог
             while (command.exit)
             {
 
