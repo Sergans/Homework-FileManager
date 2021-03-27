@@ -18,10 +18,10 @@ namespace Homework_FileManager
         string del = "del";
         string copy = "copy";
         string cd = "cd";
-        string dc = "dc";
-        string bc = "bc";
-        string YN = "Y";
-        string Q = "Q";
+        string rd = "rd";//Root Directory
+        string bd = "bd";//Back Directory
+        string YN = "Y";//Yes/No
+        string Q = "Q";//Exit
         public bool exit;
         int nomberfile;
 
@@ -46,7 +46,6 @@ namespace Homework_FileManager
                 }
             }
             
-
             return b[0];
 
         }
@@ -58,14 +57,14 @@ namespace Homework_FileManager
                 List(mas);
 
             }
-            else if (com == bc)
+            else if (com == bd)
             {
                 DirectoryInfo backdir = new DirectoryInfo(put);
                 put = Convert.ToString(backdir.Parent);
                 mas = Directory.GetFileSystemEntries(put);
 
             }
-            else if (com == dc)
+            else if (com == rd)
             {
                 DirectoryInfo rootdir = new DirectoryInfo(put);
                 put = Convert.ToString(rootdir.Root);
@@ -89,8 +88,6 @@ namespace Homework_FileManager
                 {
                     InfoFile(nextput);
                 }
-
-                //InfoFile(nextput);
 
             }
             else if (com == del)
