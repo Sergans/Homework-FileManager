@@ -9,7 +9,10 @@ namespace Homework_FileManager
         {
             string com;
 
-            Command command = new Command(Directory.GetCurrentDirectory());//Каталог по умолчанию
+            Command command = new Command();
+            Console.WriteLine("Программа файловый менеджер\nНажмите: (Y) - загрузить сохраненный вариант,(Любую клавишу)-Продолжить");
+            string entarance = Console.ReadLine();
+            Console.Clear();
             //Command command = new Command(@"C:\Users\GANS\Desktop\Catalog");//Пробный каталог
             while (command.exit)
             {

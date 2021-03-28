@@ -9,10 +9,10 @@ namespace Homework_FileManager
 {
     class Command
     {
-        public string put;
+        public string put { get; set; }
         string nextdir;
         string[] com = { "cd", "atr", "del", "copy" };
-        string[] mas;
+        string[] mas { get; set; }
         string ls = "ls";
         string atr = "atr";
         string del = "del";
@@ -22,16 +22,10 @@ namespace Homework_FileManager
         string bd = "bd";//Back Directory
         string YN = "Y";//Yes/No
         string Q = "Q";//Exit
-        public bool exit;
+        public bool exit = true;
         int nomberfile;
 
-        public Command(string pu_t)
-        {
-            put = pu_t;
-            exit = true;
-            mas = Directory.GetFileSystemEntries(put);
-
-        }
+        
         public string ParseComand(string com)
         {
 
