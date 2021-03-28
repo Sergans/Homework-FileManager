@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Text.Json;
 
 namespace Homework_FileManager
 {
@@ -12,7 +13,7 @@ namespace Homework_FileManager
         public string put { get; set; }
         string nextdir;
         string[] com = { "cd", "atr", "del", "copy" };
-        string[] mas { get; set; }
+       public string[] mas { get; set; }
         string ls = "ls";
         string atr = "atr";
         string del = "del";
