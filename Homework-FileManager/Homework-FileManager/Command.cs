@@ -25,6 +25,7 @@ namespace Homework_FileManager
         string Q = "Q";//Exit
         public bool exit = true;
         int nomberfile;
+        long sumfile = 0;
 
         
         public string ParseComand(string com)
@@ -79,6 +80,14 @@ namespace Homework_FileManager
                 if (attributes == FileAttributes.Directory)
                 {
                     InfoDir(nextput);
+                    string[] arrayfileput = Directory.GetFiles(nextput);
+                    foreach (string s in arrayfileput)
+                    {
+                        FileInfo file = new FileInfo(s);
+                        sumfile += file.Length;
+                    }
+                    DirectoryInfo dir = new DirectoryInfo(nextput);
+                    Console.WriteLine($"Имя Каталога: {dir.Name}\nРазмер:{sumfile} Байт\nДата создания: {dir.CreationTime}\nДата изменения: {dir.LastWriteTime}");
                 }
                 else
                 {
@@ -164,11 +173,28 @@ namespace Homework_FileManager
         }
         public void InfoDir(string sp)
         {
+            //string[] arrayfileput = Directory.GetFiles(sp);
+         string[] arraydirput = Directory.GetDirectories(sp);
+            //foreach(string s in arrayfileput)
+            //{
+            //    FileInfo file = new FileInfo(s);
+            //    sumfile += file.Length;
+            //}
+            for (int i = 0; i < arraydirput.Length; i++)
+            {
+                string[] flput = Directory.GetFiles(arraydirput[i]);
+                foreach(string s in flput)
+                {
+                    FileInfo file = new FileInfo(s);
+                    sumfile += file.Length;
+                }
+                InfoDir(arraydirput[i]);
+            }
 
-            DirectoryInfo dir = new DirectoryInfo(sp);
-            Console.WriteLine($"Имя Каталога: {dir.Name}\nРазмер:   Байт\nДата создания: {dir.CreationTime}\nДата изменения: {dir.LastWriteTime}");
+            //DirectoryInfo dir = new DirectoryInfo(sp);
+            //Console.WriteLine($"Имя Каталога: {dir.Name}\nРазмер:{sumfile} Байт\nДата создания: {dir.CreationTime}\nДата изменения: {dir.LastWriteTime}");
 
-        }
+        } 
         public void DelFile(string sp)
         {
             FileInfo file = new FileInfo(sp);

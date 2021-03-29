@@ -22,23 +22,7 @@ namespace Homework_FileManager
             {
                 string load = File.ReadAllText(json);
                 command = JsonSerializer.Deserialize<Command>(load);
-                while (command.exit)
-                {
-
-                    Console.WriteLine($"Путь:{command.put}");
-                    Console.WriteLine("Введите команду");
-                    com = Console.ReadLine();
-                    Console.Clear();
-                    command.Comand(command.ParseComand(com));
-                    if (command.exit == false)
-                    {
-                        Console.WriteLine("Файл сохранен");
-                        string saveProg = JsonSerializer.Serialize(command);
-
-                        File.WriteAllText(json, saveProg);
-
-                    }
-                }
+                
             }
             else
                 command.put = Directory.GetCurrentDirectory();
