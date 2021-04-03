@@ -26,6 +26,7 @@ namespace Homework_FileManager
         public bool exit = true;
         int nomberfile;
         long sumfile = 0;
+        int j = 0;
 
         
         public string ParseComand(string com)
@@ -51,7 +52,8 @@ namespace Homework_FileManager
         {
             if (com == ls)
             {
-                List(mas);
+                //List(mas);
+                ListDirectory(put);
 
             }
             else if (com == bd)
@@ -76,6 +78,7 @@ namespace Homework_FileManager
                 //nomberfile = Convert.ToInt32(Console.ReadLine());
                 Console.Clear();
                 string nextput = Path.Combine(put, nextdir);
+
                 FileAttributes attributes = File.GetAttributes(nextput);
                 if (attributes == FileAttributes.Directory)
                 {
@@ -87,6 +90,7 @@ namespace Homework_FileManager
                         sumfile += file.Length;
                     }
                     DirectoryInfo dir = new DirectoryInfo(nextput);
+
                     Console.WriteLine($"Имя Каталога: {dir.Name}\nРазмер:{sumfile} Байт\nДата создания: {dir.CreationTime}\nДата изменения: {dir.LastWriteTime}");
                 }
                 else
@@ -139,10 +143,13 @@ namespace Homework_FileManager
                 List(mas);
 
                 string nextput = Path.Combine(put, nextdir);
-                put = nextput;
-                mas = Directory.GetFileSystemEntries(put);
-                Console.Clear();
-                List(mas);
+                if (Directory.Exists(nextput) == true)
+                    put = nextput;
+                
+                    mas = Directory.GetFileSystemEntries(put);
+                    Console.Clear();
+                    List(mas);
+                
             }
             else if (com == Q)
             {
@@ -166,10 +173,42 @@ namespace Homework_FileManager
             }
 
         }
+        public void ListDirectory(string put,int lv=0)
+        {
+            string[] sp = Directory.GetDirectories(put);
+            string indent = "";
+            for (int i = 0; i < lv; i++)
+            {
+                indent += "  ";
+            }
+            foreach (string s in sp)
+            {
+                DirectoryInfo dir = new DirectoryInfo(s);
+                Console.WriteLine(indent + "│\n"+indent+"└" + dir.Name);
+                if (j < sp.Length)
+                {
+                    j++;
+                   ListDirectory(s, lv + 1);
+                }
+                
+            }
+
+
+
+        }
         public void InfoFile(string sp)
         {
             FileInfo file = new FileInfo(sp);
-            Console.WriteLine($"Имя файла: {file.Name}\nРазмер: {file.Length} Байт\nДата создания: {file.CreationTime}\nДата изменения: {file.LastWriteTime}\nРасширение: {file.Extension}");
+            try
+            {
+                Console.WriteLine($"Имя файла: {file.Name}\nРазмер: {file.Length} Байт\nДата создания: {file.CreationTime}\nДата изменения: {file.LastWriteTime}\nРасширение: {file.Extension}");
+            }
+            catch
+            {
+                Console.Clear();
+                Console.WriteLine("Ошибка: Неверный путь или файла не существует");
+            }
+
         }
         public void InfoDir(string sp)
         {
