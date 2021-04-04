@@ -9,6 +9,9 @@ namespace Homework_FileManager
     {
         static void Main(string[] args)
         {
+            Console.WriteLine(Console.WindowHeight);
+            Console.WriteLine(Console.WindowWidth);
+            
             Grafica win = new Grafica();
             TextPosition add = new TextPosition();
             
