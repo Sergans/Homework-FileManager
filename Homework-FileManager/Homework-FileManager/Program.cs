@@ -9,12 +9,18 @@ namespace Homework_FileManager
     {
         static void Main(string[] args)
         {
+            Grafica win = new Grafica();
+            TextPosition add = new TextPosition();
+            
             string com;
-
+            
             Command command = new Command();
             //Command command = new Command(@"C:\Users\GANS\Desktop\Catalog");//Пробный каталог
             string json = Path.Combine(Directory.GetCurrentDirectory(), "save.json");
-            Console.WriteLine("Программа файловый менеджер\nНажмите: (Y) - загрузить сохраненный вариант,(Любую клавишу)-Продолжить");
+           // win.Paint(1,1,20,10);
+            add.ComCurs(20, 15, "Программа файловый менеджер");
+            add.ComCurs(20, 16, "Нажмите: (Y) - загрузить сохраненный вариант,(Любую клавишу)-Продолжить");
+            
             string entarance = Console.ReadLine();
             Console.Clear();
 
@@ -29,7 +35,8 @@ namespace Homework_FileManager
                command.mas = Directory.GetFileSystemEntries(command.put);
             while (command.exit)
             {
-
+                //add.ComCurs(0, 25, $"Путь:{command.put}");
+                //add.ComCurs(0, 26, "Введите команду");
                 Console.WriteLine($"Путь:{command.put}");
                 Console.WriteLine("Введите команду");
                 com = Console.ReadLine();
@@ -37,7 +44,8 @@ namespace Homework_FileManager
                 command.Comand(command.ParseComand(com));
                 if (command.exit == false)
                 {
-                    Console.WriteLine("Файл сохранен");
+                    add.ComCurs(20, 15, "Файл сохранен");
+                    //Console.WriteLine("Файл сохранен");
                     string saveProg = JsonSerializer.Serialize(command);
 
                     File.WriteAllText(json, saveProg);

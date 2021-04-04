@@ -158,7 +158,12 @@ namespace Homework_FileManager
 
             else
             {
-                Console.WriteLine("Некорректная команда!!!\nДля перехода в меню ввода нажмите любую клавишу");
+                Console.Clear();
+                TextPosition add = new TextPosition();
+                add.ComCurs(15, 20, "Некорректная команда!!!");
+                add.ComCurs(15, 21, "Для перехода в меню ввода нажмите любую клавишу");
+
+                //Console.WriteLine("Некорректная команда!!!\nДля перехода в меню ввода нажмите любую клавишу");
             }
             return put;
         }
@@ -176,6 +181,7 @@ namespace Homework_FileManager
         public void ListDirectory(string put,int lv=0)
         {
             string[] sp = Directory.GetDirectories(put);
+            string[] sp1 = Directory.GetFiles(put);
             string indent = "";
             for (int i = 0; i < lv; i++)
             {
@@ -185,28 +191,35 @@ namespace Homework_FileManager
             {
                 DirectoryInfo dir = new DirectoryInfo(s);
                 Console.WriteLine(indent + "│\n"+indent+"└" + dir.Name);
-                if (j < sp.Length)
+                if (j < 0)
                 {
                     j++;
-                   ListDirectory(s, lv + 1);
+                    ListDirectory(s, lv + 1);
                 }
-                
+                //ListDirectory(s, lv + 1);
             }
-
+            foreach(string file in sp1)
+            {
+                Console.WriteLine(indent + "│\n" + indent + "└" + Path.GetFileName(file));
+            }
 
 
         }
         public void InfoFile(string sp)
         {
             FileInfo file = new FileInfo(sp);
+            TextPosition add = new TextPosition();
             try
             {
-                Console.WriteLine($"Имя файла: {file.Name}\nРазмер: {file.Length} Байт\nДата создания: {file.CreationTime}\nДата изменения: {file.LastWriteTime}\nРасширение: {file.Extension}");
+                add.ComCurs(15, 20, $"Имя файла: {file.Name}\nРазмер: {file.Length} Байт\nДата создания: {file.CreationTime}\nДата изменения: {file.LastWriteTime}\nРасширение: {file.Extension}");
+                add.ComCurs(15, 21, $"Размер:{file.Length} Байт");
+                //Console.WriteLine($"Имя файла: {file.Name}\nРазмер: {file.Length} Байт\nДата создания: {file.CreationTime}\nДата изменения: {file.LastWriteTime}\nРасширение: {file.Extension}");
             }
             catch
             {
                 Console.Clear();
-                Console.WriteLine("Ошибка: Неверный путь или файла не существует");
+                add.ComCurs(15, 20, "Ошибка: Неверный путь или файла не существует");
+                //Console.WriteLine("Ошибка: Неверный путь или файла не существует");
             }
 
         }
