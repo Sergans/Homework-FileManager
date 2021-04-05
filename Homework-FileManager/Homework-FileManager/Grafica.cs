@@ -14,21 +14,26 @@ namespace Homework_FileManager
         char ugLL = '└';
         char ugUR = '┐';
         char ugLR = '┘';
-        public void Ugol(int x,int y,char ugol)
+        public void Ugol(int x,int y, char ugol)
         {
+            
             Console.SetCursorPosition(x, y);
             Console.Write(ugol);
         }
-        public void Paint(int xu,int yu,int dlin,int vis)
+        public void Paint()
         {
-            //Ugol(xu,yu,ugUL);
-             HorizLine(xu,yu,dlin);
-            
+            Ugol(0,0,ugUL);
+            Ugol(0, Console.BufferHeight-1, ugLL);
+            Ugol(Console.BufferWidth - 1, 0, ugUR);
+            Ugol(Console.BufferWidth - 1, Console.BufferHeight - 1, ugLR);
+            HorizLine(0, Console.BufferHeight - 6, Console.BufferWidth - 1);
+             //HorizLine(xu,yu,dlin);
+
             // VerticLine(xu-1, yu+1, vis);
-            
-           // HorizLine(xu, vis, dlin);
-             
-           // VerticLine(dlin, yu, vis);
+
+            // HorizLine(xu, vis, dlin);
+
+            // VerticLine(dlin, yu, vis);
             //Ugol(dlin+1, yu, ugUR);
             // VerticLine(dlin+1, yu + 1,vis);
             //Ugol(xu, vis+1, ugLL);

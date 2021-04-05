@@ -9,20 +9,33 @@ namespace Homework_FileManager
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(Console.WindowHeight);
-            Console.WriteLine(Console.WindowWidth);
+            //Console.WriteLine(Console.BufferWidth);//87
+            //Console.WriteLine(Console.BufferHeight);//9001
+            //Console.WriteLine(Console.WindowWidth);//87
+            //Console.WriteLine(Console.WindowHeight);//32
+            //Console.WriteLine(Console.WindowTop);//0
+            //Console.WriteLine(Console.WindowLeft);//0
+          
+           Console.SetBufferSize(150, 40);
+           Console.SetWindowSize(150, 40);
+           
             
             Grafica win = new Grafica();
-            TextPosition add = new TextPosition();
+            TextPosition textPosition = new TextPosition();
             
             string com;
             
             Command command = new Command();
             //Command command = new Command(@"C:\Users\GANS\Desktop\Catalog");//Пробный каталог
             string json = Path.Combine(Directory.GetCurrentDirectory(), "save.json");
-           // win.Paint(1,1,20,10);
-            add.ComCurs(20, 15, "Программа файловый менеджер");
-            add.ComCurs(20, 16, "Нажмите: (Y) - загрузить сохраненный вариант,(Любую клавишу)-Продолжить");
+            win.Paint();
+            // win.HorizLine(1,0,148);
+            // win.HorizLine(0, 39, 148);
+            //win.VerticLine(0, 1, 39);
+            string textenter = "Нажмите: (Y) - загрузить сохраненный вариант,(Любую клавишу)-Продолжить";
+            textPosition.ComCurs(50, 15, "Программа файловый менеджер");
+            textPosition.ComCurs(35, 16, textenter);
+            win.HorizLine(35, 17, textenter.Length);
             
             string entarance = Console.ReadLine();
             Console.Clear();
@@ -38,16 +51,19 @@ namespace Homework_FileManager
                command.mas = Directory.GetFileSystemEntries(command.put);
             while (command.exit)
             {
-                //add.ComCurs(0, 25, $"Путь:{command.put}");
-                //add.ComCurs(0, 26, "Введите команду");
-                Console.WriteLine($"Путь:{command.put}");
-                Console.WriteLine("Введите команду");
+                
+                win.Paint();
+                textPosition.ComCurs(0, Console.BufferHeight - 5, $"Путь:{command.put}");
+                textPosition.ComCurs(0, Console.BufferHeight - 4, "Введите команду");
+                //Console.WriteLine($"Путь:{command.put}");
+                //Console.WriteLine("Введите команду");
+                //textPosition.ComCurs(0, 0, com = Console.ReadLine());
                 com = Console.ReadLine();
                 Console.Clear();
                 command.Comand(command.ParseComand(com));
                 if (command.exit == false)
                 {
-                    add.ComCurs(20, 15, "Файл сохранен");
+                    textPosition.ComCurs(20, 15, "Файл сохранен");
                     //Console.WriteLine("Файл сохранен");
                     string saveProg = JsonSerializer.Serialize(command);
 

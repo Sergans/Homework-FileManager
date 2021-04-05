@@ -159,9 +159,9 @@ namespace Homework_FileManager
             else
             {
                 Console.Clear();
-                TextPosition add = new TextPosition();
-                add.ComCurs(15, 20, "Некорректная команда!!!");
-                add.ComCurs(15, 21, "Для перехода в меню ввода нажмите любую клавишу");
+                TextPosition textPosition = new TextPosition();
+                textPosition.ComCurs(60, 10, "Некорректная команда!!!");
+                textPosition.ComCurs(60, 11, "Для перехода в меню ввода нажмите любую клавишу");
 
                 //Console.WriteLine("Некорректная команда!!!\nДля перехода в меню ввода нажмите любую клавишу");
             }
