@@ -26,19 +26,12 @@ namespace Homework_FileManager
             Ugol(0, Console.BufferHeight-1, ugLL);
             Ugol(Console.BufferWidth - 1, 0, ugUR);
             Ugol(Console.BufferWidth - 1, Console.BufferHeight - 1, ugLR);
-            HorizLine(0, Console.BufferHeight - 6, Console.BufferWidth - 1);
-             //HorizLine(xu,yu,dlin);
-
-            // VerticLine(xu-1, yu+1, vis);
-
-            // HorizLine(xu, vis, dlin);
-
-            // VerticLine(dlin, yu, vis);
-            //Ugol(dlin+1, yu, ugUR);
-            // VerticLine(dlin+1, yu + 1,vis);
-            //Ugol(xu, vis+1, ugLL);
-            // HorizLine(xu + 1, vis+1,dlin);
-            //Ugol(dlin+1, vis+1, ugLR);
+            HorizLine(1, Console.BufferHeight - 6, Console.BufferWidth - 2);
+            HorizLine(1, Console.BufferHeight - 1, Console.BufferWidth - 2);
+            HorizLine(1, 0, Console.BufferWidth - 2);
+            VerticLine(0, 1, Console.BufferHeight - 2);
+            VerticLine(Console.BufferWidth - 1, 1, Console.BufferHeight - 2);
+             
         }
 
         public void HorizLine(int x,int y,int dlin)

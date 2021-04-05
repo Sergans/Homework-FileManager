@@ -15,7 +15,7 @@ namespace Homework_FileManager
         {
             Console.CursorLeft = x;
             Console.CursorTop = y;
-            Console.WriteLine(text);
+            Console.Write(text);
         }
         
     }

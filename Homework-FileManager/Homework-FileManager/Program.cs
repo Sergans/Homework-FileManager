@@ -24,7 +24,7 @@ namespace Homework_FileManager
             TextPosition textPosition = new TextPosition();
             
             string com;
-            
+
             Command command = new Command();
             //Command command = new Command(@"C:\Users\GANS\Desktop\Catalog");//Пробный каталог
             string json = Path.Combine(Directory.GetCurrentDirectory(), "save.json");
@@ -51,13 +51,13 @@ namespace Homework_FileManager
                command.mas = Directory.GetFileSystemEntries(command.put);
             while (command.exit)
             {
-                
+                command.nomberposition = 0;
                 win.Paint();
-                textPosition.ComCurs(0, Console.BufferHeight - 5, $"Путь:{command.put}");
-                textPosition.ComCurs(0, Console.BufferHeight - 4, "Введите команду");
+                textPosition.ComCurs(1, Console.BufferHeight - 5, $"Путь:{command.put}");
+                textPosition.ComCurs(1, Console.BufferHeight - 4, "Введите команду/");
                 //Console.WriteLine($"Путь:{command.put}");
                 //Console.WriteLine("Введите команду");
-                //textPosition.ComCurs(0, 0, com = Console.ReadLine());
+                //textPosition.ComCurs(1, Console.BufferHeight - 3, com = Console.ReadLine());
                 com = Console.ReadLine();
                 Console.Clear();
                 command.Comand(command.ParseComand(com));

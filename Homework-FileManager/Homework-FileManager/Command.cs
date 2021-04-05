@@ -8,6 +8,7 @@ using System.Text.Json;
 
 namespace Homework_FileManager
 {
+
     class Command
     {
         public string put { get; set; }
@@ -24,9 +25,10 @@ namespace Homework_FileManager
         string YN = "Y";//Yes/No
         string Q = "Q";//Exit
         public bool exit = true;
-        int nomberfile;
+       public int nomberposition = 3;
         long sumfile = 0;
         int j = 0;
+       
 
         
         public string ParseComand(string com)
@@ -170,16 +172,19 @@ namespace Homework_FileManager
 
         public void List(string[] sp)
         {
+            TextPosition textPosition = new TextPosition();
 
             for (int i = 0; i < sp.Length; i++)
             {
-                Console.WriteLine(Path.GetFileName(sp[i]));
-                //Console.WriteLine($"{i}: {Path.GetFileName(sp[i])}");
+                //Console.WriteLine(Path.GetFileName(sp[i]));
+                textPosition.ComCurs(100,i+1,Path.GetFileName(sp[i]));
             }
 
         }
         public void ListDirectory(string put,int lv=0)
         {
+            
+            TextPosition textPosition = new TextPosition();
             string[] sp = Directory.GetDirectories(put);
             string[] sp1 = Directory.GetFiles(put);
             string indent = "";
@@ -189,18 +194,25 @@ namespace Homework_FileManager
             }
             foreach (string s in sp)
             {
+                
+                //int i = 1;
                 DirectoryInfo dir = new DirectoryInfo(s);
-                Console.WriteLine(indent + "│\n"+indent+"└" + dir.Name);
-                if (j < 0)
-                {
-                    j++;
-                    ListDirectory(s, lv + 1);
-                }
-                //ListDirectory(s, lv + 1);
+                //Console.WriteLine(indent + "│\n"+indent+"└" + dir.Name);
+                textPosition.ComCurs(1, nomberposition++, indent + "│");
+                textPosition.ComCurs(1, nomberposition++ , indent + "└" + dir.Name);
+                nomberposition++;
+                //if (j < 0)
+                //{
+                //    j++;
+                //    ListDirectory(s, lv + 1);
+                //}
+               // ListDirectory(s, lv + 1);
             }
             foreach(string file in sp1)
             {
-                Console.WriteLine(indent + "│\n" + indent + "└" + Path.GetFileName(file));
+                
+               // textPosition.ComCurs(1, nomberposition + 1, Path.GetFileName(file));
+                //Console.WriteLine(indent + "│\n" + indent + "└" + Path.GetFileName(file));
             }
 
 
