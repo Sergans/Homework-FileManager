@@ -25,7 +25,7 @@ namespace Homework_FileManager
         string YN = "Y";//Yes/No
         string Q = "Q";//Exit
         public bool exit = true;
-       public int nomberposition = 3;
+       public int nomberposition = 0;
         long sumfile = 0;
         int j = 0;
        
@@ -54,8 +54,8 @@ namespace Homework_FileManager
         {
             if (com == ls)
             {
-                //List(mas);
-                ListDirectory(put);
+                List(mas);
+                
 
             }
             else if (com == bd)
@@ -199,19 +199,21 @@ namespace Homework_FileManager
                 DirectoryInfo dir = new DirectoryInfo(s);
                 //Console.WriteLine(indent + "│\n"+indent+"└" + dir.Name);
                 textPosition.ComCurs(1, nomberposition++, indent + "│");
-                textPosition.ComCurs(1, nomberposition++ , indent + "└" + dir.Name);
+                textPosition.ComCurs(1, nomberposition, indent + "└" + dir.Name);
                 nomberposition++;
-                //if (j < 0)
-                //{
-                //    j++;
-                //    ListDirectory(s, lv + 1);
-                //}
-               // ListDirectory(s, lv + 1);
+                if (j < 0)
+                {
+                    j++;
+                    ListDirectory(s, lv + 1);
+                }
+                //ListDirectory(s, lv + 1);
             }
             foreach(string file in sp1)
             {
-                
-               // textPosition.ComCurs(1, nomberposition + 1, Path.GetFileName(file));
+
+                textPosition.ComCurs(1, nomberposition++, indent + "│");
+                textPosition.ComCurs(1, nomberposition, indent + "└" + Path.GetFileName(file));
+                nomberposition++;
                 //Console.WriteLine(indent + "│\n" + indent + "└" + Path.GetFileName(file));
             }
 

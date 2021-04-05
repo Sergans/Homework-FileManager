@@ -24,7 +24,8 @@ namespace Homework_FileManager
             TextPosition textPosition = new TextPosition();
             
             string com;
-
+            string instruction="(rd)-переход в корневую папку,(bd)-переход на уровень назад,(cd)-переход в следующую папку текущего каталога(cd/Имя папки)";
+                
             Command command = new Command();
             //Command command = new Command(@"C:\Users\GANS\Desktop\Catalog");//Пробный каталог
             string json = Path.Combine(Directory.GetCurrentDirectory(), "save.json");
@@ -53,8 +54,11 @@ namespace Homework_FileManager
             {
                 command.nomberposition = 0;
                 win.Paint();
-                textPosition.ComCurs(1, Console.BufferHeight - 5, $"Путь:{command.put}");
-                textPosition.ComCurs(1, Console.BufferHeight - 4, "Введите команду/");
+                win.VerticLine(70, 1, Console.BufferHeight - 11);
+                textPosition.ComCurs(1, Console.BufferHeight - 9, instruction);
+                command.ListDirectory(command.put);
+                textPosition.ComCurs(1, Console.BufferHeight - 3, $"Путь:{command.put}");
+                textPosition.ComCurs(1, Console.BufferHeight - 2, "Введите команду/");
                 //Console.WriteLine($"Путь:{command.put}");
                 //Console.WriteLine("Введите команду");
                 //textPosition.ComCurs(1, Console.BufferHeight - 3, com = Console.ReadLine());

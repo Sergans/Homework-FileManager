@@ -26,11 +26,13 @@ namespace Homework_FileManager
             Ugol(0, Console.BufferHeight-1, ugLL);
             Ugol(Console.BufferWidth - 1, 0, ugUR);
             Ugol(Console.BufferWidth - 1, Console.BufferHeight - 1, ugLR);
-            HorizLine(1, Console.BufferHeight - 6, Console.BufferWidth - 2);
+            HorizLine(1, Console.BufferHeight - 4, Console.BufferWidth - 2);
+            HorizLine(1, Console.BufferHeight - 10, Console.BufferWidth - 2);
             HorizLine(1, Console.BufferHeight - 1, Console.BufferWidth - 2);
             HorizLine(1, 0, Console.BufferWidth - 2);
             VerticLine(0, 1, Console.BufferHeight - 2);
             VerticLine(Console.BufferWidth - 1, 1, Console.BufferHeight - 2);
+
              
         }
 
