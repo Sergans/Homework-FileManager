@@ -13,19 +13,21 @@ namespace Homework_FileManager
     {
         public string put { get; set; }
         string nextdir;
-        string[] com = { "cd", "atr", "del", "copy" };
+        string newdir;
+        string[] com = { "nd", "atr", "del", "copy","cd" };
        public string[] mas { get; set; }
         string ls = "ls";
         string atr = "atr";
         string del = "del";
         string copy = "copy";
+        string nd = "nd";
         string cd = "cd";
         string rd = "rd";//Root Directory
         string bd = "bd";//Back Directory
         string YN = "Y";//Yes/No
         string Q = "Q";//Exit
         public bool exit = true;
-       public int nomberposition = 0;
+       public int nomberposition = 0;// Позиция вывода дерева каталогоа и файлов
         long sumfile = 0;
         int j = 0;
        
@@ -41,6 +43,7 @@ namespace Homework_FileManager
                 {
                     
                     nextdir = b[1].Trim();
+                    newdir= b[1].Trim();
                     return b[0].Trim();
 
                 }
@@ -140,7 +143,7 @@ namespace Homework_FileManager
                 List(mas);
 
             }
-            else if (com == cd)
+            else if (com == nd)
             {
                 List(mas);
 
@@ -152,6 +155,13 @@ namespace Homework_FileManager
                     Console.Clear();
                     List(mas);
                 
+            }
+            else if (com == cd)
+            {
+                if (Directory.Exists(newdir) == true)
+                    put = nextdir;
+                mas = Directory.GetFileSystemEntries(put);
+                Console.Clear();
             }
             else if (com == Q)
             {
@@ -201,11 +211,11 @@ namespace Homework_FileManager
                 textPosition.ComCurs(1, nomberposition++, indent + "│");
                 textPosition.ComCurs(1, nomberposition, indent + "└" + dir.Name);
                 nomberposition++;
-                if (j < 0)
-                {
-                    j++;
-                    ListDirectory(s, lv + 1);
-                }
+                //if (j < 0)
+                //{
+                //    j++;
+                //    ListDirectory(s, lv + 1);
+                //}
                 //ListDirectory(s, lv + 1);
             }
             foreach(string file in sp1)
