@@ -216,16 +216,16 @@ namespace Homework_FileManager
                 //    j++;
                 //    ListDirectory(s, lv + 1);
                 //}
-                //ListDirectory(s, lv + 1);
+                ListDirectory(s, lv + 1);
             }
-            foreach(string file in sp1)
-            {
+            //foreach(string file in sp1)
+            //{
 
-                textPosition.ComCurs(1, nomberposition++, indent + "│");
-                textPosition.ComCurs(1, nomberposition, indent + "└" + Path.GetFileName(file));
-                nomberposition++;
-                //Console.WriteLine(indent + "│\n" + indent + "└" + Path.GetFileName(file));
-            }
+            //    textPosition.ComCurs(1, nomberposition++, indent + "│");
+            //    textPosition.ComCurs(1, nomberposition, indent + "└" + Path.GetFileName(file));
+            //    nomberposition++;
+            //    //Console.WriteLine(indent + "│\n" + indent + "└" + Path.GetFileName(file));
+            //}
 
 
         }
