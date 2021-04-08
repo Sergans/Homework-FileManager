@@ -30,9 +30,7 @@ namespace Homework_FileManager
             //Command command = new Command(@"C:\Users\GANS\Desktop\Catalog");//Пробный каталог
             string json = Path.Combine(Directory.GetCurrentDirectory(), "save.json");
             win.Paint();
-            // win.HorizLine(1,0,148);
-            // win.HorizLine(0, 39, 148);
-            //win.VerticLine(0, 1, 39);
+           
             string textenter = "Нажмите: (Y) - загрузить сохраненный вариант,(Любую клавишу)-Продолжить";
             textPosition.ComCurs(50, 15, "Программа файловый менеджер");
             textPosition.ComCurs(35, 16, textenter);
@@ -49,7 +47,7 @@ namespace Homework_FileManager
             }
             else
                 command.put = Directory.GetCurrentDirectory();
-               command.mas = Directory.GetFileSystemEntries(command.put);
+                command.mas = Directory.GetFiles(command.put);
             while (command.exit)
             {
                 command.nomberposition = 0;
