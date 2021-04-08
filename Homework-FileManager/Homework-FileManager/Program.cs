@@ -37,7 +37,7 @@ namespace Homework_FileManager
             textPosition.ComCurs(50, 15, "Программа файловый менеджер");
             textPosition.ComCurs(35, 16, textenter);
             win.HorizLine(35, 17, textenter.Length);
-            
+            Console.SetCursorPosition(65, 18);
             string entarance = Console.ReadLine();
             Console.Clear();
 
@@ -67,7 +67,11 @@ namespace Homework_FileManager
                 command.Comand(command.ParseComand(com));
                 if (command.exit == false)
                 {
-                    textPosition.ComCurs(20, 15, "Файл сохранен");
+                    string textout = "Состояние программы сохранено";
+                    win.Paint();
+                    textPosition.ComCurs(60, 15, textout);
+                    win.HorizLine(60, 16, textout.Length);
+
                     //Console.WriteLine("Файл сохранен");
                     string saveProg = JsonSerializer.Serialize(command);
 
