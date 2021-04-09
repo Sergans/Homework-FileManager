@@ -217,7 +217,7 @@ namespace Homework_FileManager
                 //    j++;
                 //    ListDirectory(s, lv + 1);
                 //}
-                ListDirectory(s, lv + 1);
+               // ListDirectory(s, lv + 1);
             }
             //foreach(string file in sp1)
             //{
