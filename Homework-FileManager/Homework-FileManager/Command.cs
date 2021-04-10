@@ -28,7 +28,7 @@ namespace Homework_FileManager
         string YN = "Y";//Yes/No
         string Q = "Q";//Exit
         public bool exit = true;
-       public int nomberposition = 0;// Позиция вывода дерева каталогоа и файлов
+       public int nomberposition = 4;// Позиция вывода дерева каталогоа и файлов
         long sumfile = 0;
         int j = 0;
        
@@ -66,15 +66,15 @@ namespace Homework_FileManager
             {
                 DirectoryInfo backdir = new DirectoryInfo(put1);
                 put1 = Convert.ToString(backdir.Parent);
-                mas = Directory.GetFileSystemEntries(put);
-                List(mas);
+                mas = Directory.GetFileSystemEntries(put1);
+                //List(mas);
             }
             else if (com == rd)
             {
                 DirectoryInfo rootdir = new DirectoryInfo(put);
                 put = Convert.ToString(rootdir.Root);
                 mas = Directory.GetFileSystemEntries(put);
-                List(mas);
+               // List(mas);
 
             }
             else if (com == atr)
@@ -107,17 +107,24 @@ namespace Homework_FileManager
             }
             else if (com == del)
             {
-                List(mas);
-                //Console.WriteLine("Введите номер файла");
-                //nomberfile = Convert.ToInt32(Console.ReadLine());
+                string texdel = $"Удалить обеъкт и все его содержимое: {nextdir}??? Нажмите Y(Да)/N(Нет)";
+                
+                TextPosition textdel = new TextPosition();
+                Grafica delline = new Grafica();
                 Console.Clear();
-                Console.WriteLine($"Удалить обеъкт и все его содержимое: {nextdir}??? Нажмите Y(Да)/N(Нет)");
+                textdel.ComCurs(35, 16, texdel);
+                delline.HorizLine(35, 17, texdel.Length);
+                Console.SetCursorPosition(65, 18);
+                //Console.WriteLine($"Удалить обеъкт и все его содержимое: {nextdir}??? Нажмите Y(Да)/N(Нет)");
                 YN = Console.ReadLine();
                 if (YN == "Y")
                 {
                     Console.Clear();
-                    Console.WriteLine($"{nextdir} БЫЛ УДАЛЕН!");
-                    string nextput = Path.Combine(put, nextdir);
+                    textdel.ComCurs(35, 16, $"{nextdir} БЫЛ УДАЛЕН!");
+                    Console.SetCursorPosition(65, 18);
+                    Console.ReadKey();
+                    Console.Clear();
+                    string nextput = Path.Combine(put1, nextdir);
                     FileAttributes attributes = File.GetAttributes(nextput);
                     if (attributes == FileAttributes.Directory)
                     {
@@ -128,9 +135,10 @@ namespace Homework_FileManager
                         DelFile(nextput);
                     }
                     mas = Directory.GetFileSystemEntries(put);
-                    List(mas);
+                    
 
                 }
+                Console.Clear();
             }
             else if (com == copy)
             {
@@ -154,13 +162,14 @@ namespace Homework_FileManager
                 
                     mas = Directory.GetFileSystemEntries(put1);
                     Console.Clear();
-                    List(mas);
+                   // List(mas);
                 
             }
             else if (com == cd)
             {
                 if (Directory.Exists(newdir) == true)
                     put = nextdir;
+                put1 = nextdir;
                 mas = Directory.GetFileSystemEntries(put);
 
                 Console.Clear();
@@ -186,10 +195,10 @@ namespace Homework_FileManager
         {
             TextPosition textPosition = new TextPosition();
 
-            for (int i = 0; i < sp.Length; i++)
+            for (int i = 0,j=2; i < sp.Length; i++,j++)
             {
                 //Console.WriteLine(Path.GetFileName(sp[i]));
-                textPosition.ComCurs(71, i + 1,Path.GetFileName(sp[i]));
+                textPosition.ComCurs(61, j + 1,Path.GetFileName(sp[i]));
             }
 
         }
@@ -211,8 +220,8 @@ namespace Homework_FileManager
                 DirectoryInfo dir = new DirectoryInfo(s);
                 //Console.WriteLine(indent + "│\n"+indent+"└" + dir.Name);
                
-                textPosition.ComCurs(1, nomberposition++, indent + "│");
-                textPosition.ComCurs(1, nomberposition, indent + "└" + dir.Name);
+                textPosition.ComCurs(3, nomberposition++, indent + "│");
+                textPosition.ComCurs(3, nomberposition, indent + "└" + dir.Name);
                 nomberposition++;
                 //if (j < 2)
                 //{
