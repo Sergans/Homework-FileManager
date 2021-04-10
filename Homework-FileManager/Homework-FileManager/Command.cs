@@ -65,14 +65,14 @@ namespace Homework_FileManager
             {
                 DirectoryInfo backdir = new DirectoryInfo(put);
                 put = Convert.ToString(backdir.Parent);
-                mas = Directory.GetDirectories(put);
+                mas = Directory.GetFileSystemEntries(put);
 
             }
             else if (com == rd)
             {
                 DirectoryInfo rootdir = new DirectoryInfo(put);
                 put = Convert.ToString(rootdir.Root);
-                mas = Directory.GetDirectories(put);
+                mas = Directory.GetFileSystemEntries(put);
                 List(mas);
 
             }
@@ -151,7 +151,7 @@ namespace Homework_FileManager
                 if (Directory.Exists(nextput) == true)
                     put = nextput;
                 
-                    mas = Directory.GetDirectories(put);
+                    mas = Directory.GetFileSystemEntries(put);
                     Console.Clear();
                     List(mas);
                 
@@ -160,7 +160,7 @@ namespace Homework_FileManager
             {
                 if (Directory.Exists(newdir) == true)
                     put = nextdir;
-                mas = Directory.GetDirectories(put);
+                mas = Directory.GetFileSystemEntries(put);
 
                 Console.Clear();
             }
@@ -188,7 +188,7 @@ namespace Homework_FileManager
             for (int i = 0; i < sp.Length; i++)
             {
                 //Console.WriteLine(Path.GetFileName(sp[i]));
-                textPosition.ComCurs(100, i + 1,Path.GetFileName(sp[i]));
+                textPosition.ComCurs(71, i + 1,Path.GetFileName(sp[i]));
             }
 
         }

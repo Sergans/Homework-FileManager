@@ -47,7 +47,7 @@ namespace Homework_FileManager
             }
             else
                 command.put = Directory.GetCurrentDirectory();
-                command.mas = Directory.GetFiles(command.put);
+                command.mas = Directory.GetFileSystemEntries(command.put);
             while (command.exit)
             {
                 command.nomberposition = 0;
