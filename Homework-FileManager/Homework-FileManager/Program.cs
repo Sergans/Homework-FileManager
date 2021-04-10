@@ -54,6 +54,7 @@ namespace Homework_FileManager
                 win.Paint();
                 win.VerticLine(70, 1, Console.BufferHeight - 11);
                 textPosition.ComCurs(1, Console.BufferHeight - 9, instruction);
+                
                 command.ListDirectory(command.put);
                 textPosition.ComCurs(1, Console.BufferHeight - 3, $"Путь:{command.put}");
                 textPosition.ComCurs(1, Console.BufferHeight - 2, "Введите команду/");

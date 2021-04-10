@@ -66,7 +66,7 @@ namespace Homework_FileManager
                 DirectoryInfo backdir = new DirectoryInfo(put);
                 put = Convert.ToString(backdir.Parent);
                 mas = Directory.GetFileSystemEntries(put);
-
+                List(mas);
             }
             else if (com == rd)
             {
@@ -145,7 +145,7 @@ namespace Homework_FileManager
             }
             else if (com == nd)
             {
-                List(mas);
+               // List(mas);
 
                 string nextput = Path.Combine(put, nextdir);
                 if (Directory.Exists(nextput) == true)
@@ -173,8 +173,8 @@ namespace Homework_FileManager
             {
                 Console.Clear();
                 TextPosition textPosition = new TextPosition();
-                textPosition.ComCurs(60, 10, "Некорректная команда!!!");
-                textPosition.ComCurs(60, 11, "Для перехода в меню ввода нажмите любую клавишу");
+                textPosition.ComCurs(100, 15, "Некорректная команда!!!");
+                //textPosition.ComCurs(60, 11, "Для перехода в меню ввода нажмите любую клавишу");
 
                 //Console.WriteLine("Некорректная команда!!!\nДля перехода в меню ввода нажмите любую клавишу");
             }
@@ -197,7 +197,7 @@ namespace Homework_FileManager
             
             TextPosition textPosition = new TextPosition();
             string[] sp = Directory.GetDirectories(put);
-            string[] sp1 = Directory.GetFiles(put);
+            string[] sp1 = Directory.GetDirectories(put);
             string indent = "";
             for (int i = 0; i < lv; i++)
             {
@@ -209,6 +209,7 @@ namespace Homework_FileManager
                 //int i = 1;
                 DirectoryInfo dir = new DirectoryInfo(s);
                 //Console.WriteLine(indent + "│\n"+indent+"└" + dir.Name);
+               
                 textPosition.ComCurs(1, nomberposition++, indent + "│");
                 textPosition.ComCurs(1, nomberposition, indent + "└" + dir.Name);
                 nomberposition++;
@@ -217,13 +218,13 @@ namespace Homework_FileManager
                 //    j++;
                 //    ListDirectory(s, lv + 1);
                 //}
-               // ListDirectory(s, lv + 1);
+               // ListDirectory(s, lv+1);
             }
-            //foreach(string file in sp1)
+            //foreach (string s in sp1)
             //{
 
             //    textPosition.ComCurs(1, nomberposition++, indent + "│");
-            //    textPosition.ComCurs(1, nomberposition, indent + "└" + Path.GetFileName(file));
+            //    textPosition.ComCurs(1, nomberposition, indent + "└" + Path.GetDirectoryName(s));
             //    nomberposition++;
             //    //Console.WriteLine(indent + "│\n" + indent + "└" + Path.GetFileName(file));
             //}
