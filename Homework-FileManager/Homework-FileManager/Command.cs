@@ -12,6 +12,7 @@ namespace Homework_FileManager
     class Command
     {
         public string put { get; set; }
+        public string put1;
         string nextdir;
         string newdir;
         string[] com = { "nd", "atr", "del", "copy","cd" };
@@ -63,8 +64,8 @@ namespace Homework_FileManager
             }
             else if (com == bd)
             {
-                DirectoryInfo backdir = new DirectoryInfo(put);
-                put = Convert.ToString(backdir.Parent);
+                DirectoryInfo backdir = new DirectoryInfo(put1);
+                put1 = Convert.ToString(backdir.Parent);
                 mas = Directory.GetFileSystemEntries(put);
                 List(mas);
             }
@@ -147,11 +148,11 @@ namespace Homework_FileManager
             {
                // List(mas);
 
-                string nextput = Path.Combine(put, nextdir);
+                string nextput = Path.Combine(put1, nextdir);
                 if (Directory.Exists(nextput) == true)
-                    put = nextput;
+                    put1 = nextput;
                 
-                    mas = Directory.GetFileSystemEntries(put);
+                    mas = Directory.GetFileSystemEntries(put1);
                     Console.Clear();
                     List(mas);
                 
@@ -213,12 +214,12 @@ namespace Homework_FileManager
                 textPosition.ComCurs(1, nomberposition++, indent + "│");
                 textPosition.ComCurs(1, nomberposition, indent + "└" + dir.Name);
                 nomberposition++;
-                //if (j < 0)
+                //if (j < 2)
                 //{
                 //    j++;
                 //    ListDirectory(s, lv + 1);
                 //}
-               // ListDirectory(s, lv+1);
+                ListDirectory(s, lv+1);
             }
             //foreach (string s in sp1)
             //{
