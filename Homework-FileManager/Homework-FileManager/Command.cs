@@ -194,11 +194,18 @@ namespace Homework_FileManager
         public void List(string[] sp)
         {
             TextPosition textPosition = new TextPosition();
-
+            
             for (int i = 0,j=2; i < sp.Length; i++,j++)
             {
-                //Console.WriteLine(Path.GetFileName(sp[i]));
-                textPosition.ComCurs(61, j + 1,Path.GetFileName(sp[i]));
+                FileInfo file = new FileInfo(sp[i]);
+
+                //textPosition.ComCurs(61, j + 1,Path.GetFileName(sp[i]));
+                textPosition.ComCurs(61, j + 1, file.Name);
+                textPosition.ComCurs(100, j + 1, file.Extension);
+                
+                
+                textPosition.ComCurs(105, j + 1, Convert.ToString(file.CreationTime));
+                textPosition.ComCurs(140, j + 1, Convert.ToString(file.Length));
             }
 
         }
