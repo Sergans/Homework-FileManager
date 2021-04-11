@@ -29,11 +29,13 @@ namespace Homework_FileManager
         string Q = "Q";//Exit
         public bool exit = true;
        public int nomberposition = 4;// Позиция вывода дерева каталогоа и файлов
-        long sumfile = 0;
+        double sumfile = 0;
         int j = 0;
-       
-
+        string bytes;
         
+
+
+
         public string ParseComand(string com)
         {
 
@@ -209,10 +211,12 @@ namespace Homework_FileManager
                         FileInfo file = new FileInfo(s);
                         sumfile += file.Length;
                     }
+
                     textPosition.ComCurs(61, j + 1, dir.Name);
                     textPosition.ComCurs(100, j + 1, dir.Extension);
                     textPosition.ComCurs(115, j + 1, Convert.ToString(dir.CreationTime));
-                    textPosition.ComCurs(140, j + 1, Convert.ToString(sumfile));
+                    textPosition.ComCurs(137, j + 1, SizeFiles(sumfile));
+                    textPosition.ComCurs(144, j + 1, bytes);
 
                 }
 
@@ -226,7 +230,9 @@ namespace Homework_FileManager
                     textPosition.ComCurs(100, j + 1, file.Extension);
 
                     textPosition.ComCurs(115, j + 1, Convert.ToString(file.CreationTime));
-                    textPosition.ComCurs(140, j + 1, Convert.ToString(file.Length));
+                    textPosition.ComCurs(137, j + 1, SizeFiles(file.Length));
+                    textPosition.ComCurs(144, j + 1, bytes);
+
                 }
             }
 
@@ -340,6 +346,26 @@ namespace Homework_FileManager
         public void Exit()
         {
             exit = false;
+        }
+        public string SizeFiles(double sumfile)
+        {
+            //string bytes = "Байт";
+            //string mbytes = "МБайт";
+            string sizefile;
+            if (sumfile > 1000)
+            {
+                sumfile= (sumfile = sumfile / 1024) / 1024;
+                sumfile = Math.Round(sumfile, 2);
+              sizefile = Convert.ToString(sumfile);
+                bytes = "МБайт";
+            }
+            else
+            {
+                sizefile= Convert.ToString(sumfile);
+                bytes = "Байт";
+
+            }
+            return sizefile;
         }
     }
 }
