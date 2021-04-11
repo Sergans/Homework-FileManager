@@ -67,7 +67,7 @@ namespace Homework_FileManager
                 DirectoryInfo backdir = new DirectoryInfo(put1);
                 put1 = Convert.ToString(backdir.Parent);
                 mas = Directory.GetFileSystemEntries(put1);
-                //List(mas);
+                List(mas);
             }
             else if (com == rd)
             {
@@ -162,7 +162,7 @@ namespace Homework_FileManager
                 
                     mas = Directory.GetFileSystemEntries(put1);
                     Console.Clear();
-                   // List(mas);
+                   List(mas);
                 
             }
             else if (com == cd)
@@ -197,15 +197,37 @@ namespace Homework_FileManager
             
             for (int i = 0,j=2; i < sp.Length; i++,j++)
             {
-                FileInfo file = new FileInfo(sp[i]);
+                sumfile = 0;
+                FileAttributes attributes = File.GetAttributes(sp[i]);
+                if (attributes == FileAttributes.Directory)
+                {
+                    DirectoryInfo dir = new DirectoryInfo(sp[i]);
+                    InfoDir(sp[i]);
+                    string[] arrayfileput = Directory.GetFiles(sp[i]);
+                    foreach (string s in arrayfileput)
+                    {
+                        FileInfo file = new FileInfo(s);
+                        sumfile += file.Length;
+                    }
+                    textPosition.ComCurs(61, j + 1, dir.Name);
+                    textPosition.ComCurs(100, j + 1, dir.Extension);
+                    textPosition.ComCurs(110, j + 1, Convert.ToString(dir.CreationTime));
+                    textPosition.ComCurs(140, j + 1, Convert.ToString(sumfile));
 
-                //textPosition.ComCurs(61, j + 1,Path.GetFileName(sp[i]));
-                textPosition.ComCurs(61, j + 1, file.Name);
-                textPosition.ComCurs(100, j + 1, file.Extension);
-                
-                
-                textPosition.ComCurs(105, j + 1, Convert.ToString(file.CreationTime));
-                textPosition.ComCurs(140, j + 1, Convert.ToString(file.Length));
+                }
+
+                else
+
+                {
+                    FileInfo file = new FileInfo(sp[i]);
+
+                    //textPosition.ComCurs(61, j + 1,Path.GetFileName(sp[i]));
+                    textPosition.ComCurs(61, j + 1, file.Name);
+                    textPosition.ComCurs(100, j + 1, file.Extension);
+
+                    textPosition.ComCurs(110, j + 1, Convert.ToString(file.CreationTime));
+                    textPosition.ComCurs(140, j + 1, Convert.ToString(file.Length));
+                }
             }
 
         }

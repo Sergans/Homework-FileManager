@@ -57,7 +57,7 @@ namespace Homework_FileManager
                 textPosition.ComCurs(1, Console.BufferHeight - 9, instruction);
                 textPosition.ComCurs(1, 3, Path.GetFileName(command.put));
                 command.ListDirectory(command.put);
-                //command.List(command.mas);
+                command.List(command.mas);
                 textPosition.ComCurs(1, Console.BufferHeight - 3, $"Путь:{command.put1}");
                 textPosition.ComCurs(1, 1, $"Путь:{command.put1}");
                 textPosition.ComCurs(1, Console.BufferHeight - 2, "Введите команду/");
