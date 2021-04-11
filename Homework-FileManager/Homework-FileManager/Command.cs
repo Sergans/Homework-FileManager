@@ -349,8 +349,7 @@ namespace Homework_FileManager
         }
         public string SizeFiles(double sumfile)
         {
-            //string bytes = "Байт";
-            //string mbytes = "МБайт";
+            
             string sizefile;
             if (sumfile > 1000)
             {
@@ -358,7 +357,9 @@ namespace Homework_FileManager
                 sumfile = Math.Round(sumfile, 2);
               sizefile = Convert.ToString(sumfile);
                 bytes = "МБайт";
+                
             }
+            
             else
             {
                 sizefile= Convert.ToString(sumfile);
