@@ -211,7 +211,7 @@ namespace Homework_FileManager
                     }
                     textPosition.ComCurs(61, j + 1, dir.Name);
                     textPosition.ComCurs(100, j + 1, dir.Extension);
-                    textPosition.ComCurs(110, j + 1, Convert.ToString(dir.CreationTime));
+                    textPosition.ComCurs(115, j + 1, Convert.ToString(dir.CreationTime));
                     textPosition.ComCurs(140, j + 1, Convert.ToString(sumfile));
 
                 }
@@ -225,7 +225,7 @@ namespace Homework_FileManager
                     textPosition.ComCurs(61, j + 1, file.Name);
                     textPosition.ComCurs(100, j + 1, file.Extension);
 
-                    textPosition.ComCurs(110, j + 1, Convert.ToString(file.CreationTime));
+                    textPosition.ComCurs(115, j + 1, Convert.ToString(file.CreationTime));
                     textPosition.ComCurs(140, j + 1, Convert.ToString(file.Length));
                 }
             }
