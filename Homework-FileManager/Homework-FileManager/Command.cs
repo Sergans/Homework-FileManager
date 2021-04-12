@@ -206,7 +206,7 @@ namespace Homework_FileManager
         {
             TextPosition textPosition = new TextPosition();
             
-            for (int i = 0,j=3; i < sp.Length; i++,j++)
+            for (int i = 0,j=3,k=26; i < sp.Length; i++,j++)
             {
 
                 sumfile = 0;
@@ -232,13 +232,19 @@ namespace Homework_FileManager
                     ListPage(file.Name, file.Extension, Convert.ToString(file.CreationTime), file.Length, bytes, j);
    
                 }
+                if (i >= k)
+                {
+                    j = 3;
+                    k = k+i;
+                   
+                }
             }
 
         }
         public void ListPage(string fifoname,string fifoext,string fifotime,double fifosize,string fifobytes,int position)
         {
 
-            if (position < 30)
+            if (true)
             {
                 TextPosition textPosition = new TextPosition();
                 textPosition.ComCurs(61, position, fifoname);
