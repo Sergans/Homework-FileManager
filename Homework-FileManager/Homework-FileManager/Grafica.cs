@@ -29,6 +29,7 @@ namespace Homework_FileManager
             HorizLine(1, Console.BufferHeight - 4, Console.BufferWidth - 2);
             HorizLine(1, Console.BufferHeight - 10, Console.BufferWidth - 2);
             HorizLine(1, Console.BufferHeight - 1, Console.BufferWidth - 2);
+            HorizLine(1, 2, Console.BufferWidth - 2);
             HorizLine(1, 0, Console.BufferWidth - 2);
             VerticLine(0, 1, Console.BufferHeight - 2);
             VerticLine(Console.BufferWidth - 1, 1, Console.BufferHeight - 2);
