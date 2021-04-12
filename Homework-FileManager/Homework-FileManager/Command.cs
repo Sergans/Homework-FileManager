@@ -170,7 +170,7 @@ namespace Homework_FileManager
             else if (com == cd)
             {
                 if (Directory.Exists(newdir) == true)
-                    put = nextdir;
+                put = nextdir;
                 put1 = nextdir;
                 mas = Directory.GetFileSystemEntries(put);
 
