@@ -206,8 +206,9 @@ namespace Homework_FileManager
         {
             TextPosition textPosition = new TextPosition();
             
-            for (int i = 0,j=2; i < sp.Length; i++,j++)
+            for (int i = 0,j=3; i < sp.Length; i++,j++)
             {
+
                 sumfile = 0;
                 FileAttributes attributes = File.GetAttributes(sp[i]);
                 if (attributes == FileAttributes.Directory)
@@ -220,34 +221,33 @@ namespace Homework_FileManager
                         FileInfo file = new FileInfo(s);
                         sumfile += file.Length;
                     }
-                    if (i<Console.BufferHeight - 13)
-                    {
-                        textPosition.ComCurs(61, j + 1, dir.Name);
-                        textPosition.ComCurs(100, j + 1, dir.Extension);
-                        textPosition.ComCurs(115, j + 1, Convert.ToString(dir.CreationTime));
-                        textPosition.ComCurs(137, j + 1, SizeFiles(sumfile));
-                        textPosition.ComCurs(144, j + 1, bytes);
-                    }
-
+                    ListPage(dir.Name, dir.Extension, Convert.ToString(dir.CreationTime), sumfile, bytes, j);
+                    
                 }
 
                 else
 
                 {
-                    if (i<Console.BufferHeight - 13)
-                    {
-                        FileInfo file = new FileInfo(sp[i]);
-
-                        textPosition.ComCurs(61, j + 1, file.Name);
-                        textPosition.ComCurs(100, j + 1, file.Extension);
-
-                        textPosition.ComCurs(115, j + 1, Convert.ToString(file.CreationTime));
-                        textPosition.ComCurs(137, j + 1, SizeFiles(file.Length));
-                        textPosition.ComCurs(144, j + 1, bytes);
-                    }
-
+                    FileInfo file = new FileInfo(sp[i]);
+                    ListPage(file.Name, file.Extension, Convert.ToString(file.CreationTime), file.Length, bytes, j);
+   
                 }
             }
+
+        }
+        public void ListPage(string fifoname,string fifoext,string fifotime,double fifosize,string fifobytes,int position)
+        {
+
+            if (position < 30)
+            {
+                TextPosition textPosition = new TextPosition();
+                textPosition.ComCurs(61, position, fifoname);
+                textPosition.ComCurs(100, position, fifoext);
+                textPosition.ComCurs(115, position, fifotime);
+                textPosition.ComCurs(137, position, SizeFiles(fifosize));
+                textPosition.ComCurs(144, position, bytes);
+            }
+
 
         }
         public void ListDirectory(string put,int lv=0)
