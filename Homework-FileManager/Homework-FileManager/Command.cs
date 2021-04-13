@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Text.Json;
+using System.Threading;
 
 namespace Homework_FileManager
 {
@@ -206,8 +207,13 @@ namespace Homework_FileManager
         {
             TextPosition textPosition = new TextPosition();
             
-            for (int i = 0,j=3,k=26; i < sp.Length; i++,j++)
+            for (int i = 0,j=3,k=27; i < sp.Length; i++,j++)
             {
+                if (i == k)
+                {
+                    j = 3;
+                    k = i + k;
+                }
 
                 sumfile = 0;
                 FileAttributes attributes = File.GetAttributes(sp[i]);
@@ -221,7 +227,7 @@ namespace Homework_FileManager
                         FileInfo file = new FileInfo(s);
                         sumfile += file.Length;
                     }
-                    ListPage(dir.Name, dir.Extension, Convert.ToString(dir.CreationTime), sumfile, bytes, j);
+                    ListPage(dir.Name, dir.Extension, Convert.ToString(dir.CreationTime), sumfile, bytes, j,i);
                     
                 }
 
@@ -229,29 +235,30 @@ namespace Homework_FileManager
 
                 {
                     FileInfo file = new FileInfo(sp[i]);
-                    ListPage(file.Name, file.Extension, Convert.ToString(file.CreationTime), file.Length, bytes, j);
+                    ListPage(file.Name, file.Extension, Convert.ToString(file.CreationTime), file.Length, bytes, j,i);
    
                 }
-                if (i >= k)
-                {
-                    j = 3;
-                    k = k+i;
-                   
-                }
+               
             }
+           
 
         }
-        public void ListPage(string fifoname,string fifoext,string fifotime,double fifosize,string fifobytes,int position)
+        public void ListPage(string fifoname,string fifoext,string fifotime,double fifosize,string fifobytes,int position,int str)
         {
 
-            if (true)
+            if (str<27)
             {
+                //Thread.Sleep(200);
                 TextPosition textPosition = new TextPosition();
                 textPosition.ComCurs(61, position, fifoname);
                 textPosition.ComCurs(100, position, fifoext);
                 textPosition.ComCurs(115, position, fifotime);
                 textPosition.ComCurs(137, position, SizeFiles(fifosize));
                 textPosition.ComCurs(144, position, bytes);
+            }
+            else if(str > 27)
+            {
+
             }
 
 
