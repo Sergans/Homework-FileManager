@@ -79,7 +79,7 @@ namespace Homework_FileManager
                 put1 = Convert.ToString(backdirput1.Parent);
                 mas = Directory.GetFileSystemEntries(put1);
                 
-                List(mas);
+                
             }
             else if (com == rd)
             {
@@ -212,7 +212,9 @@ namespace Homework_FileManager
                 if (i == k)
                 {
                     j = 3;
-                    k = i + k;
+                   k = i + k;
+                    Console.ReadKey();
+                    Console.Clear();
                 }
 
                 sumfile = 0;
@@ -227,7 +229,7 @@ namespace Homework_FileManager
                         FileInfo file = new FileInfo(s);
                         sumfile += file.Length;
                     }
-                    ListPage(dir.Name, dir.Extension, Convert.ToString(dir.CreationTime), sumfile, bytes, j,i);
+                    ListPage(dir.Name, dir.Extension, Convert.ToString(dir.CreationTime), sumfile, bytes, j,i,k);
                     
                 }
 
@@ -235,7 +237,7 @@ namespace Homework_FileManager
 
                 {
                     FileInfo file = new FileInfo(sp[i]);
-                    ListPage(file.Name, file.Extension, Convert.ToString(file.CreationTime), file.Length, bytes, j,i);
+                    ListPage(file.Name, file.Extension, Convert.ToString(file.CreationTime), file.Length, bytes, j,i,k);
    
                 }
                
@@ -243,12 +245,12 @@ namespace Homework_FileManager
            
 
         }
-        public void ListPage(string fifoname,string fifoext,string fifotime,double fifosize,string fifobytes,int position,int str)
+        public void ListPage(string fifoname,string fifoext,string fifotime,double fifosize,string fifobytes,int position,int str,int strbufer)
         {
 
-            if (str<27)
+            if (str<strbufer)
             {
-                //Thread.Sleep(200);
+                Thread.Sleep(200);
                 TextPosition textPosition = new TextPosition();
                 textPosition.ComCurs(61, position, fifoname);
                 textPosition.ComCurs(100, position, fifoext);
@@ -256,10 +258,7 @@ namespace Homework_FileManager
                 textPosition.ComCurs(137, position, SizeFiles(fifosize));
                 textPosition.ComCurs(144, position, bytes);
             }
-            else if(str > 27)
-            {
-
-            }
+           
 
 
         }
