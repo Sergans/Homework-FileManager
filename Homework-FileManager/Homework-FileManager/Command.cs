@@ -174,7 +174,7 @@ namespace Homework_FileManager
                 
                     mas = Directory.GetFileSystemEntries(put1);
                     Console.Clear();
-                   List(mas);
+                  // List(mas);
                 
             }
             else if (com == cd)
@@ -213,8 +213,9 @@ namespace Homework_FileManager
                 {
                     j = 3;
                    k = i + k;
-                    Console.ReadKey();
-                    Console.Clear();
+                    break; 
+                    
+                    
                 }
 
                 sumfile = 0;
@@ -248,9 +249,9 @@ namespace Homework_FileManager
         public void ListPage(string fifoname,string fifoext,string fifotime,double fifosize,string fifobytes,int position,int str,int strbufer)
         {
 
-            if (str<strbufer)
+           // if (str<strbufer)
             {
-                Thread.Sleep(200);
+                //Thread.Sleep(200);
                 TextPosition textPosition = new TextPosition();
                 textPosition.ComCurs(61, position, fifoname);
                 textPosition.ComCurs(100, position, fifoext);
