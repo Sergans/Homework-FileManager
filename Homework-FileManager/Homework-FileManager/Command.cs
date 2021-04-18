@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Text.Json;
+using System.Threading;
 
 namespace Homework_FileManager
 {
@@ -12,7 +13,7 @@ namespace Homework_FileManager
     class Command
     {
         public string put { get; set; }
-        public string put1;
+        public string put1 { get; set; }
         string nextdir;
         string newdir;
         string[] com = { "nd", "atr", "del", "copy","cd" };
@@ -66,10 +67,19 @@ namespace Homework_FileManager
             }
             else if (com == bd)
             {
-                DirectoryInfo backdir = new DirectoryInfo(put1);
-                put1 = Convert.ToString(backdir.Parent);
+                DirectoryInfo backdirput = new DirectoryInfo(put);
+
+                if (put1 == put)
+                {
+                    put = Convert.ToString(backdirput.Parent);
+                }
+
+
+                DirectoryInfo backdirput1 = new DirectoryInfo(put1);
+                put1 = Convert.ToString(backdirput1.Parent);
                 mas = Directory.GetFileSystemEntries(put1);
-                List(mas);
+                
+                
             }
             else if (com == rd)
             {
@@ -164,14 +174,14 @@ namespace Homework_FileManager
                 
                     mas = Directory.GetFileSystemEntries(put1);
                     Console.Clear();
-                   List(mas);
+                  // List(mas);
                 
             }
             else if (com == cd)
             {
                 if (Directory.Exists(newdir) == true)
-                put = nextdir;
-                put1 = nextdir;
+                put = newdir;
+                put1 = newdir;
                 mas = Directory.GetFileSystemEntries(put);
 
                 Console.Clear();
@@ -197,8 +207,17 @@ namespace Homework_FileManager
         {
             TextPosition textPosition = new TextPosition();
             
-            for (int i = 0,j=2; i < sp.Length; i++,j++)
+            for (int i = 0,j=3,k=27; i < sp.Length; i++,j++)
             {
+                if (i == k)
+                {
+                    j = 3;
+                   k = i + k;
+                    break; 
+                    
+                    
+                }
+
                 sumfile = 0;
                 FileAttributes attributes = File.GetAttributes(sp[i]);
                 if (attributes == FileAttributes.Directory)
@@ -211,30 +230,37 @@ namespace Homework_FileManager
                         FileInfo file = new FileInfo(s);
                         sumfile += file.Length;
                     }
-
-                    textPosition.ComCurs(61, j + 1, dir.Name);
-                    textPosition.ComCurs(100, j + 1, dir.Extension);
-                    textPosition.ComCurs(115, j + 1, Convert.ToString(dir.CreationTime));
-                    textPosition.ComCurs(137, j + 1, SizeFiles(sumfile));
-                    textPosition.ComCurs(144, j + 1, bytes);
-
+                    ListPage(dir.Name, dir.Extension, Convert.ToString(dir.CreationTime), sumfile, bytes, j,i,k);
+                    
                 }
 
                 else
 
                 {
                     FileInfo file = new FileInfo(sp[i]);
-
-                    //textPosition.ComCurs(61, j + 1,Path.GetFileName(sp[i]));
-                    textPosition.ComCurs(61, j + 1, file.Name);
-                    textPosition.ComCurs(100, j + 1, file.Extension);
-
-                    textPosition.ComCurs(115, j + 1, Convert.ToString(file.CreationTime));
-                    textPosition.ComCurs(137, j + 1, SizeFiles(file.Length));
-                    textPosition.ComCurs(144, j + 1, bytes);
-
+                    ListPage(file.Name, file.Extension, Convert.ToString(file.CreationTime), file.Length, bytes, j,i,k);
+   
                 }
+               
             }
+           
+
+        }
+        public void ListPage(string fifoname,string fifoext,string fifotime,double fifosize,string fifobytes,int position,int str,int strbufer)
+        {
+
+           // if (str<strbufer)
+            {
+                //Thread.Sleep(200);
+                TextPosition textPosition = new TextPosition();
+                textPosition.ComCurs(61, position, fifoname);
+                textPosition.ComCurs(100, position, fifoext);
+                textPosition.ComCurs(115, position, fifotime);
+                textPosition.ComCurs(137, position, SizeFiles(fifosize));
+                textPosition.ComCurs(144, position, bytes);
+            }
+           
+
 
         }
         public void ListDirectory(string put,int lv=0)
