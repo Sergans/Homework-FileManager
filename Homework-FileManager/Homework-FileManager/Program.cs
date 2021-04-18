@@ -62,9 +62,9 @@ namespace Homework_FileManager
                 textPosition.ComCurs(1, 1, $"Путь:{command.put1}");
                 textPosition.ComCurs(1, Console.BufferHeight - 2, "Введите команду/");
 
-                com = Console.ReadLine();
-                Console.Clear();
-                command.Comand(command.ParseComand(com));
+                //com = Console.ReadLine();
+               // Console.Clear();
+                command.Comand(command.ParseComand());
                 if (command.exit == false)
                 {
                     string textout = "Состояние программы сохранено";

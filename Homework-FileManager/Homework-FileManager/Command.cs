@@ -37,9 +37,9 @@ namespace Homework_FileManager
 
 
 
-        public string ParseComand(string com)
+        public string ParseComand()
         {
-
+           string com = Console.ReadLine();
             string[] b = com.Split('/');
             for (int i = 0; i < this.com.Length; i++)
             {
@@ -78,8 +78,8 @@ namespace Homework_FileManager
                 DirectoryInfo backdirput1 = new DirectoryInfo(put1);
                 put1 = Convert.ToString(backdirput1.Parent);
                 mas = Directory.GetFileSystemEntries(put1);
-                
-                
+                Console.Clear();
+
             }
             else if (com == rd)
             {
